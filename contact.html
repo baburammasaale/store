@@ -13,29 +13,38 @@
                 <h1 style="font-size:xx-large">Get in touch</h1>
                 <hr>
             </div>
-            <input type="hidden" name="access_key" 
-            value="79d9ebfa-b10b-4633-ba3a-8906d7ea533c">
+            <input type="hidden" name="access_key" value="79d9ebfa-b10b-4633-ba3a-8906d7ea533c">
 
-            Name <input type="text" name="Name" placeholder="Enter your name"
-            class="contact-inputs1" required> <br>
-            Email <input type="text" name="Email" placeholder="Enter your email" style="width: 250px;"
+            Name <input type="text" name="Name" placeholder="Enter your name" class="contact-inputs1" required> <br>
+            Email <input type="text" name="Email" placeholder="Enter your email id" style="width: 250px;"
             class="contact-inputs2" required> <br>
-            Mobile no. <input type="text" name="Mobile no." placeholder="Enter your contact no."
+            Contact no. <input type="text" name="Mobile no." placeholder="Enter your contact no."
             class="contact-inputs3" required> <br>
             <br><br>
-            <input type="checkbox" name="products" value="Red Chilli Powder - Rs. 280/kg"> 
-            Red Chilli Powder - Rs. 280/kg <input type="text" name="Quantity of Red Chilli"
-            placeholder="Enter Quantity in kg"><br>
-            <input type="checkbox" name="products" value="Coriander Powder - Rs. 130/kg"> 
-            Coriander Powder - Rs. 130/kg <input type="text" name="Quantity of Corrinder"
-            placeholder="Enter Quantity in kg"><br>
-            <input type="checkbox" name="products" value="Turmeric Powder - Rs. 220/kg"> 
-            Turmeric Powder - Rs. 220/kg <input type="text" name="Quantity of turmeric"
-            placeholder="Enter Quantity in kg"><br>
-            <input type="checkbox" name="products" value="Cumin Seeds - Rs. 390/kg"> 
-            Cumin Seeds - Rs. 390/kg <input type="text" name="Quantity of cumin"
-            placeholder="Enter Quantity in kg"><br>
-
+            
+            <input type="checkbox" name="products" value="Red Chilli Powder - Rs. 280/kg" class="chilli"> 
+            Red Chilli Powder - Rs. 280/kg <input type="number" id="chilliQty" name="Quantity of Red Chilli"
+            placeholder="Enter Quantity in kg" oninput="calculateTotal()"><br>
+            
+            <input type="checkbox" name="products" value="Coriander Powder - Rs. 130/kg" class="corr"> 
+            Coriander Powder - Rs. 130/kg <input type="number" id="corianderQty" name="Quantity of Coriander"
+            placeholder="Enter Quantity in kg" oninput="calculateTotal()"><br>
+            
+            <input type="checkbox" name="products" value="Turmeric Powder - Rs. 220/kg" class="turmeric"> 
+            Turmeric Powder - Rs. 220/kg <input type="number" id="turmericQty" name="Quantity of Turmeric"
+            placeholder="Enter Quantity in kg" oninput="calculateTotal()"><br>
+            
+            <input type="checkbox" name="products" value="Cumin Seeds - Rs. 390/kg" class="cumin"> 
+            Cumin Seeds - Rs. 390/kg <input type="number" id="cuminQty" name="Quantity of Cumin"
+            placeholder="Enter Quantity in kg" oninput="calculateTotal()"><br> <br>
+            
+            Total Amount in Rs.<input type="text" id="totalAmount" name="Total Amount" value="" readonly class="total"> <br> <br>
+            
+            <input type="radio" name="Payment mode" value="Cash on delivery"> 
+            Cash on delivery 
+            <input type="radio" name="Payment mode" value="Pay online"> 
+            Pay online <button onclick="navigateToPage()">Go to Payment Page</button>
+            <br>
             <input name="Feedback" placeholder="Enter your feedback" class="textarea"> <br>
             <button type="submit">Place Order</button>
         </form>
@@ -49,5 +58,36 @@
     <div class="copyright">
         © 2024 Copyright Baburam Masaale | All rights reserved
     </div>
+    <script>
+        function navigateToPage() {
+            
+            window.location.href = 'pay.html';
+        }
+        function calculateTotal() {
+            // Prices per kg
+            const chilliPrice = 280;
+            const corianderPrice = 130;
+            const turmericPrice = 220;
+            const cuminPrice = 390;
+
+            // Get quantities
+            const chilliQty = parseFloat(document.getElementById('chilliQty').value) || 0;
+            const corianderQty = parseFloat(document.getElementById('corianderQty').value) || 0;
+            const turmericQty = parseFloat(document.getElementById('turmericQty').value) || 0;
+            const cuminQty = parseFloat(document.getElementById('cuminQty').value) || 0;
+
+            // Calculate total amount
+            const totalAmount = (chilliQty * chilliPrice) + 
+                                (corianderQty * corianderPrice) + 
+                                (turmericQty * turmericPrice) + 
+                                (cuminQty * cuminPrice);
+
+            // Set the total amount in the input field
+            document.getElementById('totalAmount').value = totalAmount;
+            localStorage.setItem('totalAmount', totalAmount);
+        }
+    </script>
+    
+    
 </body>
 </html>
