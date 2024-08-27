@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+</head>
+<body>
+        <h1>PAYMENT GATEWAY</h1>
+        <!-- Display total amount -->
+    <h3>Your Total Amount: Rs. <span id="displayTotal"></span></h3>
+    <hr>
+    <script>
+        // Retrieve the total amount from local storage
+        const totalAmount = localStorage.getItem('totalAmount');
+
+        if (totalAmount) {
+            // Print the total amount on the page
+            document.getElementById('displayTotal').innerText = totalAmount;
+        } else {
+            document.getElementById('displayTotal').innerText = "No amount calculated";
+        }
+        
+
+        const storedValue = localStorage.getItem('totalamount');
+        document.getElementById('divtotal').innerText = totalamount;
+        
+    </script>
+    <div class="div-img"><img src="qr.jpeg"></div>
+    <style>
+        .div-img
+        {
+            width:70rem;
+            height:30rem;
+            margin-left: -25rem;
+        }
+        img
+        {
+            width:100%;
+            object-fit:contain;
+            height:30rem;
+        }
+        
+    </style>
+    
+
+
+
+    </form>
+</body>
+</html>
